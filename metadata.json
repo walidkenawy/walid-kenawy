@@ -1,0 +1,8 @@
+{
+  "name": "Switch",
+  "description": "A sleek, cinematic platform for authentic self-development, holistic healing, and shamanic experiences with AI-driven personalization and immersive global discovery.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
