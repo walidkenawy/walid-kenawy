@@ -2,24 +2,46 @@
 import { GoogleGenAI } from "@google/genai";
 
 /**
+ * The Switch Oracle - Global Intelligence for multi-faceted guidance.
+ * Synthesizes: Advisor, Therapist, Shamanic Healer, and Coach.
+ */
+export async function getOracleResponse(question: string, context: string = "") {
+  try {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const prompt = `You are the Global Oracle of the Switch Platform. 
+    You embody a synthesized consciousness of four archetypes:
+    1. The Elite Advisor: Practical, confident, and worldly.
+    2. The Somatic Therapist: Deeply empathetic, focused on emotional safety and processing.
+    3. The Shamanic Healer: Connected to ancient wisdom, lineages, and the energetic frequency of the Earth.
+    4. The Transformation Coach: Action-oriented, challenging, and focused on radical growth.
+
+    User Question: "${question}"
+    Current Context: ${context}
+
+    Your goal is to provide a response that touches on at least two of these archetypes simultaneously. 
+    Tone: Premium, cinematic, deeply grounding, and mystical yet grounded in reality.
+    Style: Use the Switch brand voice—shamanic depth meets elite travel confidence.
+    Format: Use Markdown for structure. Keep the response under 150 words. Avoid generic AI introductory fluff.`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: prompt,
+      config: {
+        thinkingConfig: { thinkingBudget: 0 }
+      }
+    });
+    return response.text || "The resonance is faint. Focus your intention and ask again.";
+  } catch (error) {
+    console.error("Oracle Sync Error:", error);
+    return "The neural-shamanic bridge is currently undergoing a frequency reset. Please try again shortly.";
+  }
+}
+
+/**
  * Ask the Mentor - General wisdom and quick Q&A.
  */
 export async function askMentor(question: string, userContext: string = "") {
-  try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: `You are the Switch Oracle, a high-intelligence guide for the Switch platform.
-      The user is asking: "${question}". 
-      User context: ${userContext}.
-      Provide a wise, cinematic, and grounding response in under 100 words. 
-      Use a calm, premium tone that blends shamanic depth with elite travel confidence.`
-    });
-    return response.text || "The path is obscured for a moment. Take a breath, and let us try again.";
-  } catch (error) {
-    console.error("Mentor connection lost:", error);
-    return "The winds are shifting. Please try your query again when the spirits are calm.";
-  }
+  return getOracleResponse(question, userContext);
 }
 
 /**
