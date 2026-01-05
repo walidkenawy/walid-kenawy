@@ -8,6 +8,7 @@ export interface Event {
   days: string;
   price: number;
   thumbnail: string;
+  posterUrl: string; // High-resolution cinematic poster image
   description: string;
   coordinates: { x: number; y: number }; // Percentage relative to map container
 }

@@ -25,52 +25,77 @@ export interface DetailedEvent extends Event {
   }[];
 }
 
-const createEvent = (id: string, title: string, theme: string, location: string, duration: 'micro-retreat' | 'macro-retreat', days: string, price: number, x: number, y: number, img: string, desc: string): DetailedEvent => ({
-  id, title, theme, location, duration, days, price, thumbnail: img, description: desc,
+const createEvent = (id: string, title: string, theme: string, location: string, duration: 'micro-retreat' | 'macro-retreat', days: string, price: number, x: number, y: number, thumbnail: string, poster: string, desc: string): DetailedEvent => ({
+  id, title, theme, location, duration, days, price, thumbnail, posterUrl: poster, description: desc,
   coordinates: { x, y },
   program: ['Sacred Geometry', 'Breathwork Mastery', 'Lineage Ritual'],
-  benefits: ['Stress reduction', 'Identity clarity', 'Neural rewiring'],
+  benefits: ['Neural Plasticity', 'Emotional Sovereignty', 'Ancestral Clearing'],
   therapyProgram: [
-    { phase: 'Descent', details: 'Introduction to shadow-work and somatic release.' },
-    { phase: 'Equilibrium', details: 'Harmonizing internal polarities.' }
+    { phase: 'Descent', details: 'Identifying the egoic structures and somatic blockages.' },
+    { phase: 'Liminality', details: 'Navigating the space between the old self and the emerging consciousness.' },
+    { phase: 'Integration', details: 'Grounding the peak insights into daily biological rhythms.' }
   ],
   itinerary: [
-    { day: 'Day 1', activity: 'Arrival and Intention.' },
-    { day: 'Days 2-3', activity: 'Deep immersion and peak rituals.' }
+    { day: 'Day 1', activity: 'Arrival, Cleaning, and Intention Setting.' },
+    { day: 'Day 2', activity: 'Elemental Immersion: Earth & Water rituals.' },
+    { day: 'Day 3', activity: 'The Shadow Walk: Deep psychological exploration.' },
+    { day: 'Final Day', activity: 'The Re-entry Protocol: Mapping the path forward.' }
   ],
   preparationChecklist: [
-    { category: 'Spirit', items: ['Meditative focus', 'Journal'] }
+    { category: 'Spirit', items: ['Meditative focus', 'Dream journal practice'] },
+    { category: 'Physical', items: ['Clean diet 7 days prior', 'Hydration focus'] }
   ]
 });
 
-export const MOCK_EVENTS: DetailedEvent[] = [
-  createEvent('1', 'Heart-Center Healing', 'Emotional Release', 'Sacred Valley, Peru', 'macro-retreat', '10 Days', 3400, 28, 65, 'https://images.unsplash.com/photo-1518173946687-a4c8a9ba336c?auto=format&fit=crop&q=80&w=800', 'A deep dive into shamanic medicine and ancient Quechua traditions to unlock your emotional potential.'),
-  createEvent('2', 'Desert Drum Ritual', 'Ancestral Connection', 'Wadi Rum, Jordan', 'micro-retreat', '3 Days', 1200, 58, 48, 'https://images.unsplash.com/photo-1547234935-80c7145ec969?auto=format&fit=crop&q=80&w=800', 'Sync your heartbeat with the rhythm of the desert through rhythmic entrainment and vast perspective.'),
-  createEvent('3', 'Misty Forest Awakening', 'Mindfulness', 'Yakushima, Japan', 'macro-retreat', '7 Days', 2800, 82, 38, 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800', 'Walk through ancient cedar forests and rediscover your connection to the Earth spirit.'),
-  createEvent('4', 'Arctic Soul Bath', 'Resilience', 'Lofoten, Norway', 'micro-retreat', '3 Days', 1800, 52, 15, 'https://images.unsplash.com/photo-1520520731457-9283dd14aa66?auto=format&fit=crop&q=80&w=800', 'Cold exposure therapy and northern lights meditation to build grit and psychological flexibility.'),
-  createEvent('5', 'Sacred Silence', 'Deep Introspection', 'Rishikesh, India', 'macro-retreat', '14 Days', 3100, 72, 45, 'https://images.unsplash.com/photo-1545389336-cf09bd8c9b0e?auto=format&fit=crop&q=80&w=800', 'A two-week vow of silence in the foothills of the Himalayas to confront internal chatter.'),
-  createEvent('6', 'Volcanic Rebirth', 'Transformation', 'Reykjavik, Iceland', 'micro-retreat', '4 Days', 2200, 45, 20, 'https://images.unsplash.com/photo-1517639493569-5666a7b2f494?auto=format&fit=crop&q=80&w=800', 'Utilize geothermal energy rituals to burn away old versions of self.'),
-  createEvent('7', 'Amazonian Genesis', 'Plant Medicine', 'Iquitos, Peru', 'macro-retreat', '12 Days', 3900, 31, 75, 'https://images.unsplash.com/photo-1516533075015-a3838414c3cb?auto=format&fit=crop&q=80&w=800', 'Authentic Ayahuasca ceremonies with Shipibo elders in the heart of the rainforest.'),
-  createEvent('8', 'Sahara Starlight', 'Cosmic Alignment', 'Merzouga, Morocco', 'micro-retreat', '4 Days', 1500, 48, 42, 'https://images.unsplash.com/photo-1504198266287-1659872e6590?auto=format&fit=crop&q=80&w=800', 'Nocturnal navigation and astronomy-based meditation in the world\'s most silent dunes.'),
-  createEvent('9', 'Aegean Serenity', 'Somatic Yoga', 'Santorini, Greece', 'micro-retreat', '5 Days', 2100, 55, 35, 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&q=80&w=800', 'Combining movement therapy with the healing frequency of Mediterranean waters.'),
-  createEvent('10', 'Celtic Mist', 'Druidic Wisdom', 'Isle of Skye, Scotland', 'macro-retreat', '8 Days', 2600, 46, 12, 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=800', 'Reconnecting with ancestral lore and stone circle energy work.'),
-  createEvent('11', 'Balinese Bloom', 'Creative Flow', 'Ubud, Bali', 'macro-retreat', '10 Days', 3200, 85, 65, 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800', 'Art therapy and water purification rituals in tropical sanctuary.'),
-  createEvent('12', 'Atacama Void', 'Sensory Reboot', 'San Pedro, Chile', 'micro-retreat', '4 Days', 1900, 25, 85, 'https://images.unsplash.com/photo-1447005497523-267866384074?auto=format&fit=crop&q=80&w=800', 'Floating in salt lagoons and high-altitude sensory deprivation sessions.'),
-  // Fillers for total 24
-  ...Array.from({ length: 12 }, (_, i) => createEvent(
-    (i + 13).toString(),
-    `Elemental Path ${i + 13}`,
-    'Expansion',
-    'Sacred Site',
-    i % 2 === 0 ? 'macro-retreat' : 'micro-retreat',
-    '7 Days',
-    2400,
-    10 + (i * 7) % 80,
-    10 + (i * 11) % 80,
-    `https://images.unsplash.com/photo-${1500000000000 + i}?auto=format&fit=crop&q=80&w=800`,
-    'An AI-curated journey into the deep subconscious using unique local frequencies.'
-  ))
+const themes = [
+  "Shamanic Wisdom", "Self-Development", "Neural Rewiring", "Ancestral Healing", 
+  "Somatic Release", "Conscious Leadership", "Spiritual Alchemy", "Nature Immersion"
 ];
+
+const locations = [
+  "Sedona, USA", "Tulum, Mexico", "Bali, Indonesia", "Kyoto, Japan", 
+  "Andes, Peru", "Swiss Alps", "Sahara, Morocco", "Daintree, Australia"
+];
+
+const descriptions = [
+  "A profound journey into the subconscious through the lens of ancient lineage wisdom.",
+  "Unlock the architecture of your mind and rewrite the narratives that no longer serve your growth.",
+  "Connect with the primal frequencies of the earth in a ritual designed for radical self-discovery.",
+  "An intensive somatic experience focused on releasing stored trauma and reclaiming your vital energy.",
+  "Master the art of presence through guided breathwork and silent forest immersion.",
+  "Explore the intersection of quantum physics and spiritual alchemy in a transformative setting."
+];
+
+// Curated list of high-quality Unsplash IDs for cinematic feel
+const imageIds = [
+  "1506197664102-b770ff030834", "1518005020250-ee21d1d03099", "1464822759023-fed622ff2c3b",
+  "1501785888041-af3ef285b470", "1507525428034-b723cf961d3e", "1472214103451-9374bd1c798e",
+  "1534067783941-51c9c23ecfd3", "1519681393784-d120267933ba", "1506126613408-eca07ce68773",
+  "1518173946684-147107ba1f21", "1500382017468-9049fee74a62", "1512413316925-fd304447a679"
+];
+
+export const MOCK_EVENTS: DetailedEvent[] = Array.from({ length: 52 }, (_, i) => {
+  const theme = themes[i % themes.length];
+  const location = locations[i % locations.length];
+  const desc = descriptions[i % descriptions.length];
+  const isMacro = i % 3 === 0;
+  const imageId = imageIds[i % imageIds.length];
+  
+  return createEvent(
+    (i + 1).toString(),
+    `${theme}: ${location.split(',')[0]} Resonance`,
+    theme,
+    location,
+    isMacro ? 'macro-retreat' : 'micro-retreat',
+    isMacro ? '14 Days' : '4 Days',
+    1500 + (i * 120),
+    10 + (i * 1.7) % 80,
+    10 + (i * 1.3) % 80,
+    `https://images.unsplash.com/photo-${imageId}?auto=format&fit=crop&q=80&w=600`,
+    `https://images.unsplash.com/photo-${imageId}?auto=format&fit=crop&q=80&w=1600`, // High-res poster
+    desc
+  );
+});
 
 export const COMMUNITY_POSTS: CommunityPost[] = [
   { id: '1', author: 'Elena R.', avatar: 'https://i.pravatar.cc/150?u=1', content: 'Just returned from the Volcanic Rebirth. I feel like my cells have been literalized. Still processing the black sand ritual...', likes: 24, tags: ['Iceland', 'Transformation'] },
